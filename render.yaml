@@ -1,24 +1,20 @@
 databases:
-  - name: mysitered
-    databaseName: mysitered
-    user: mysitered
-    plan: free
+  - name: rails-crud-redux
+    databaseName: rails-crud-redux
+    user: rails_crud_redux_user
 
 services:
   - type: web
-    name: mysitered
+    name: React-Redux_rails7
     runtime: ruby
-    plan: free
     buildCommand: "./bin/render-build.sh"
-    # Uncomment for paid instances
-    # preDeployCommand: "bundle exec rails db:migrate"
-    startCommand: "bundle exec rails server"
+    startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysite
+          name: rails-crud-redux
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
-      - key: WEB_CONCURRENCY
-        value: 2
+
+        
